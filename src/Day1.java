@@ -8,11 +8,9 @@ import java.util.Collections;
 public class Day1 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("inputDay1.txt"));
-        int curChampion = 0;
         int curGreatest = 0;
         int curSum = 0;
-        int curElf = 0;
-        String line = null;
+        String line;
         ArrayList<Integer> elfVals = new ArrayList<>();
         while((line = reader.readLine()) != null){
             if(!line.equals("")) {
@@ -21,11 +19,9 @@ public class Day1 {
             }else{
                 if(curSum>curGreatest){
                     curGreatest = curSum;
-                    curChampion = curElf;
                 }
                 elfVals.add(curSum);
                 curSum = 0;
-                curElf++;
             }
         }
         System.out.println("Top 3:");
