@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,13 +16,15 @@ public class Day1 {
                 int lineVal = Integer.parseInt(line);
                 curSum+=lineVal;
             }else{
-                if(curSum>curGreatest){
-                    curGreatest = curSum;
-                }
                 elfVals.add(curSum);
                 curSum = 0;
             }
         }
+        System.out.println("Highest Val: ");
+        System.out.println(Collections.max(elfVals));
+
+        System.out.println();
+
         System.out.println("Top 3:");
         System.out.println(Collections.max(elfVals));
         elfVals.remove(Collections.max(elfVals));
