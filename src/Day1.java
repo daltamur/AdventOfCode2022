@@ -1,11 +1,13 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Day1 {
-    public static void main(String[] args) {
-        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("inputDay1.txt"));
         int curChampion = 0;
         int curGreatest = 0;
         int curSum = 0;
