@@ -20,6 +20,7 @@ public class Day1 {
                 curSum = 0;
             }
         }
+
         System.out.println("Highest Val: ");
         System.out.println(Collections.max(elfVals));
 
