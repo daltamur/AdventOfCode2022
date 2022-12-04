@@ -3,12 +3,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Day3 {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("day3.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("inputDay3.txt"));
         String line;
         int total = 0;
         ArrayList<String> words = new ArrayList<>();
@@ -30,36 +29,20 @@ public class Day3 {
             String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
             for(Character c: sameChars){
-                if(lowerCase.contains(String.valueOf(c))){
-                    for(int i = 0; i<lowerCase.toCharArray().length; i++) {
-                        if (c == lowerCase.toCharArray()[i]){
-                            total+=i+1;
-                            break;
-                        }
-                    }
-
-                } else if (upperCase.contains(String.valueOf(c))) {
-                    for(int i = 0; i<upperCase.toCharArray().length; i++) {
-                        if (c == upperCase.toCharArray()[i]){
-                            total+=i+1+26;
-                            break;
-                        }
-                    }
-                }
+                total = getTotal(total, lowerCase, upperCase, c);
             }
         }
         System.out.println(total);
         total = 0;
 
         for(int i = 0; i<words.size(); i+=3){
-            Set<Character> chars = new HashSet<>();
-            ArrayList<Character> charsInit = new ArrayList<Character>();
+            ArrayList<Character> charsInit = new ArrayList<>();
             for (char c : words.get(i).toCharArray()) {
                 charsInit.add(c);
             }
-            chars.addAll(charsInit);
+            Set<Character> chars = new HashSet<>(charsInit);
             for(int j = i+1; j<i+3;j++){
-                ArrayList<Character> charsCur = new ArrayList<Character>();
+                ArrayList<Character> charsCur = new ArrayList<>();
                 for (char c : words.get(j).toCharArray()) {
                     charsCur.add(c);
                 }
@@ -71,25 +54,30 @@ public class Day3 {
             String lowerCase = "abcdefghijklmnopqrstuvwxyz";
             String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             Character curVal = (Character) chars.toArray()[0];
-            if(lowerCase.contains(String.valueOf(curVal))){
-                for(int x = 0; x<lowerCase.toCharArray().length; x++) {
-                    if (curVal == lowerCase.toCharArray()[x]){
-                        total+=x+1;
-                        break;
-                    }
-                }
-
-            } else if (upperCase.contains(String.valueOf(curVal))) {
-                for(int z = 0; z<upperCase.toCharArray().length; z++) {
-                    if (curVal == upperCase.toCharArray()[z]){
-                        total+=z+1+26;
-                        break;
-                    }
-                }
-            }
+            total = getTotal(total, lowerCase, upperCase, curVal);
 
         }
 
         System.out.println(total);
+    }
+
+    private static int getTotal(int total, String lowerCase, String upperCase, Character c) {
+        if(lowerCase.contains(String.valueOf(c))){
+            for(int i = 0; i<lowerCase.toCharArray().length; i++) {
+                if (c == lowerCase.toCharArray()[i]){
+                    total+=i+1;
+                    break;
+                }
+            }
+
+        } else if (upperCase.contains(String.valueOf(c))) {
+            for(int i = 0; i<upperCase.toCharArray().length; i++) {
+                if (c == upperCase.toCharArray()[i]){
+                    total+=i+1+26;
+                    break;
+                }
+            }
+        }
+        return total;
     }
 }
