@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class Day4 {
     public static void main(String[] args) throws IOException {
@@ -16,15 +17,15 @@ public class Day4 {
             String set1Hi = sets[0].split("-")[1];
             String set1Lo = sets[0].split("-")[0];
             Set<Integer> set1 = new HashSet<>();
-            for(int i = Integer.parseInt(set1Lo); i<=Integer.parseInt(set1Hi); i++){
+            for(int i = Integer.parseInt(set1Lo); i<=Integer.parseInt(set1Hi); i++)
                 set1.add(i);
-            }
+
             String set2Hi = sets[1].split("-")[1];
             String set2Lo = sets[1].split("-")[0];
             Set<Integer>set2 = new HashSet<>();
-            for(int i = Integer.parseInt(set2Lo); i<=Integer.parseInt(set2Hi); i++){
+            for(int i = Integer.parseInt(set2Lo); i<=Integer.parseInt(set2Hi); i++)
                 set2.add(i);
-            }
+
             if(set1.containsAll(set2))
                 numberOfSubsets++;
             else if (set2.containsAll(set1))
