@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="aksw.thirdparty.apache.commons.vfs2" type="repository">
+    <properties maven-id="org.aksw.thirdparty.org.apache.commons:commons-vfs2:2.9.0-805-1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/commons-vfs2-2.9.0-805-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/hadoop-hdfs-client-3.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/okhttp-2.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/okio-1.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-annotations-2.10.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-databind-2.10.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-core-2.10.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.12.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
