@@ -16,9 +16,7 @@ public class Day7 {
 
 
         while((line = reader.readLine()) != null){
-            if (line.startsWith("$ ls")){
-                //do nothing
-            }else if(line.startsWith("$ cd")){
+            if(line.startsWith("$ cd")){
                 String nextDir = line.split(" ")[2];
                 if(Objects.equals(nextDir, "/")){
                     while(curDir.getParentDir() != null){
@@ -31,7 +29,7 @@ public class Day7 {
                 }
             }else if(line.startsWith("dir ")){
                 curDir.addDirectory(new Directory(line.substring("dir ".length()), curDir));
-            }else{
+            }else if(!line.startsWith("$")){
                 int size = Integer.parseInt(line.split(" ")[0]);
                 curDir.addFile(new File(size));
             }
