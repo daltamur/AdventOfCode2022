@@ -15,10 +15,9 @@ public class Day7 {
         Directory curDir = new Directory("home", null);
 
 
-        boolean onLSCommand = false;
         while((line = reader.readLine()) != null){
             if (line.startsWith("$ ls")){
-
+                //do nothing
             }else if(line.startsWith("$ cd")){
                 String nextDir = line.split(" ")[2];
                 if(Objects.equals(nextDir, "/")){
@@ -33,9 +32,8 @@ public class Day7 {
             }else if(line.startsWith("dir ")){
                 curDir.addDirectory(new Directory(line.substring("dir ".length()), curDir));
             }else{
-                String name = line.split(" ")[1];
                 int size = Integer.parseInt(line.split(" ")[0]);
-                curDir.addFile(new File(size, name));
+                curDir.addFile(new File(size));
             }
         }
 
@@ -44,11 +42,11 @@ public class Day7 {
         }
         curDir.setSize();
         curDir.findSmallDirs(100000);
-        System.out.println(total);
+        System.out.println("Total size of dirs with size >= 100000: "+total);
         total = curDir.getSize();
-        System.out.println(total);
+        System.out.println("Total size: "+total);
         curDir.getRidOfSmallestDir(70000000 - total);
-        System.out.println(smallestDirSize);
+        System.out.println("Smallest dir to get rid of: "+smallestDirSize);
 
     }
 
@@ -56,12 +54,12 @@ public class Day7 {
 }
 
 class Directory{
-    private HashMap<String, Directory> childDirs = new HashMap<>();
+    private final HashMap<String, Directory> childDirs = new HashMap<>();
 
-    private ArrayList<File> files = new ArrayList<>();
-    private String name;
+    private final ArrayList<File> files = new ArrayList<>();
+    private final String name;
 
-    private Directory parentDir;
+    private final Directory parentDir;
 
     private int size;
 
@@ -86,10 +84,6 @@ class Directory{
         files.add(file);
     }
 
-    public ArrayList<File> getFiles(){
-        return files;
-    }
-
     public void setSize(){
         for(File file: files)
             size+=file.getSize();
@@ -109,7 +103,7 @@ class Directory{
 
 
     public void findSmallDirs(int n) {
-        if(size <= 100000)
+        if(size <= n)
             Day7.total += size;
 
 
@@ -121,9 +115,9 @@ class Directory{
     public void getRidOfSmallestDir(long currentTotal) {
         if(Day7.smallestDirSize == null && size+currentTotal >= 30000000)
             Day7.smallestDirSize = (long) size;
-        else if(size+currentTotal >= 30000000 && (long) size < Day7.smallestDirSize) {
+        else if(size+currentTotal >= 30000000 && (long) size < Day7.smallestDirSize)
             Day7.smallestDirSize = (long) size;
-        }
+
 
         for(Directory dir: childDirs.values())
             dir.getRidOfSmallestDir(currentTotal);
@@ -133,16 +127,10 @@ class Directory{
 }
 
 class File{
-    private int size;
-    private String name;
+    private final int size;
 
-    public File(int size, String name){
-        this.name = name;
+    public File(int size){
         this.size = size;
-    }
-
-    public String getName(){
-        return name;
     }
 
     public int getSize(){
