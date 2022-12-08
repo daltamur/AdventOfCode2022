@@ -35,9 +35,9 @@ public class Day7 {
             }
         }
 
-        while(curDir.getParentDir() != null){
+        while(curDir.getParentDir() != null)
             curDir = curDir.getParentDir();
-        }
+
         curDir.setSize();
         curDir.findSmallDirs(100000);
         System.out.println("Total size of dirs with size >= 100000: "+total);
@@ -85,6 +85,7 @@ class Directory{
     public void setSize(){
         for(File file: files)
             size+=file.getSize();
+
         for(Directory dir: childDirs.values()) {
             dir.setSize();
             size+=dir.getSize();
@@ -104,7 +105,6 @@ class Directory{
         if(size <= n)
             Day7.total += size;
 
-
         for(Directory dir: childDirs.values())
             dir.findSmallDirs(n);
 
@@ -115,7 +115,6 @@ class Directory{
             Day7.smallestDirSize = (long) size;
         else if(size+currentTotal >= 30000000 && (long) size < Day7.smallestDirSize)
             Day7.smallestDirSize = (long) size;
-
 
         for(Directory dir: childDirs.values())
             dir.getRidOfSmallestDir(currentTotal);
@@ -134,6 +133,5 @@ class File{
     public int getSize(){
         return size;
     }
-
 
 }
